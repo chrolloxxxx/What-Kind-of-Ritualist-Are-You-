@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ritualist Archetypes Gallery</title>
+  <style>
+    :root {
+      --bg-1: #020d06;
+      --bg-2: #041812;
+      --bg-3: #0b3d24;
+      --accent-strong: #caffdf;
+      --text-main: #e9fff5;
+      --text-sub: #a7cfb8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Georgia", system-ui, -apple-system, serif;
+      padding: 32px 20px 40px;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top, #0e4a2c 0, transparent 60%),
+        radial-gradient(circle at bottom, #041a10 0, transparent 65%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 40%, var(--bg-3));
+    }
+
+    .page-header {
+      max-width: 960px;
+      margin: 0 auto 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .page-title {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      text-shadow:
+        0 0 18px rgba(113, 255, 176, 0.9),
+        0 0 36px rgba(0, 0, 0, 0.7);
+    }
+
+    .page-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+    }
+
+    .back-link {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(153,255,206,0.8);
+      background:
+        radial-gradient(circle at top, rgba(113,255,176,0.22), transparent),
+        rgba(3,20,12,0.98);
+      color: var(--accent-strong);
+      text-decoration: none;
+      box-shadow: 0 0 14px rgba(113,255,176,0.45);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .back-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(113,255,176,0.7);
+      background:
+        radial-gradient(circle at top, rgba(113,255,176,0.3), transparent),
+        rgba(4,28,16,1);
+    }
+
+    .grid-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    /* Card style like your PNG */
+    .card {
+      border-radius: 22px;
+      padding: 1.4rem 1.4rem 0.6rem;
+      background:
+        radial-gradient(circle at top, rgba(116,255,188,0.25), transparent 60%),
+        linear-gradient(180deg, #062c19 0%, #020804 100%);
+      border: 1px solid rgba(153,255,206,0.9);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.95),
+        0 0 38px rgba(113,255,176,0.45);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-strong);
+      margin-bottom: 0.7rem;
+    }
+
+    .card-essence {
+      font-size: 0.85rem;
+      color: var(--text-main);
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+
+    .card-tagline {
+      font-size: 0.8rem;
+      color: var(--accent-strong);
+      margin-top: 0.7rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .cat-wrapper {
+      margin-top: 0.35rem;
+    }
+
+    .cat-silhouette {
+      width: 100%;
+      max-width: 210px;
+      display: block;
+      margin-inline: auto;
+    }
+
+    /* SVG defs shared for all cats */
+    svg defs { }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <div>
+      <div class="page-title">Ritualist Archetypes</div>
+      <div class="page-subtitle">All 10 covens of the Ritualverse, revealed.</div>
+    </div>
+    <a href="index.html" class="back-link">← Back to quiz</a>
+  </div>
+
+  <!-- Define reusable cat symbol once -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <radialGradient id="bgGlow" cx="50%" cy="40%">
+        <stop offset="0%" stop-color="#6cffb4" stop-opacity="0.9" />
+        <stop offset="35%" stop-color="#6cffb4" stop-opacity="0.25" />
+        <stop offset="100%" stop-color="#020b06" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id="eyeGlow">
+        <stop offset="0%" stop-color="#f4fff8" />
+        <stop offset="50%" stop-color="#cbffe5" />
+        <stop offset="100%" stop-color="#48f396" />
+      </radialGradient>
+      <linearGradient id="fadeMask" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="white" stop-opacity="1" />
+        <stop offset="65%" stop-color="white" stop-opacity="1" />
+        <stop offset="100%" stop-color="white" stop-opacity="0" />
+      </linearGradient>
+      <mask id="bodyFade">
+        <rect x="0" y="0" width="220" height="260" fill="url(#fadeMask)" />
+      </mask>
+
+      <symbol id="ritualCat" viewBox="0 0 220 260">
+        <!-- background glow -->
+        <ellipse cx="110" cy="150" rx="95" ry="105" fill="url(#bgGlow)" />
+
+        <!-- head + ears -->
+        <g mask="url(#bodyFade)">
+          <path
+            d="M45 160
+               Q45 110 78 108
+               L88 72
+               Q102 54 117 72
+               L127 108
+               Q160 110 160 160
+               Q160 210 102 218
+               Q45 210 45 160Z"
+            fill="#000000"
+          />
+        </g>
+
+        <!-- eyes -->
+        <circle cx="82" cy="142" r="12" fill="url(#eyeGlow)" />
+        <circle cx="132" cy="142" r="12" fill="url(#eyeGlow)" />
+
+        <!-- pupils -->
+        <ellipse cx="82" cy="142" rx="4" ry="7" fill="#021308" />
+        <ellipse cx="132" cy="142" rx="4" ry="7" fill="#021308" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="grid-wrapper">
+    <div class="grid">
+      <!-- 1 ORACLES -->
+      <div class="card">
+        <div class="card-title">THE ORACLES</div>
+        <div class="card-essence">
+          Strategic thinkers, visionaries, narrative builders.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          They see patterns before the blocks are even minted.
+        </div>
+      </div>
+
+      <!-- 2 SUMMONERS -->
+      <div class="card">
+        <div class="card-title">THE SUMMONERS</div>
+        <div class="card-essence">
+          Community activators, hosts, event organizers, raiders.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          They call the crowd, and the crowd always answers.
+        </div>
+      </div>
+
+      <!-- 3 ALCHEMISTS -->
+      <div class="card">
+        <div class="card-title">THE ALCHEMISTS</div>
+        <div class="card-essence">
+          Experimenters and degen builders mixing liquidity, bots, and code.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          Turning smart contracts into spellcraft.
+        </div>
+      </div>
+
+      <!-- 4 ARCHITECTS -->
+      <div class="card">
+        <div class="card-title">THE ARCHITECTS</div>
+        <div class="card-essence">
+          Infrastructure devs and backend mages who build Ritual's spine.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          They write the code that powers the coven.
+        </div>
+      </div>
+
+      <!-- 5 CHRONICLERS -->
+      <div class="card">
+        <div class="card-title">THE CHRONICLERS</div>
+        <div class="card-essence">
+          Storytellers, threadwriters, meme-smiths, content magi.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          They document the rituals so others may follow.
+        </div>
+      </div>
+
+      <!-- 6 GUARDIANS -->
+      <div class="card">
+        <div class="card-title">THE GUARDIANS</div>
+        <div class="card-essence">
+          Moderators, security analysts, whitehats, ops watchers.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          The firewall between chaos and order.
+        </div>
+      </div>
+
+      <!-- 7 CHAOS MAGES -->
+      <div class="card">
+        <div class="card-title">THE CHAOS MAGES</div>
+        <div class="card-essence">
+          Meme lords, shitposters, and energy catalysts.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          Where entropy becomes engagement.
+        </div>
+      </div>
+
+      <!-- 8 WHISPERERS -->
+      <div class="card">
+        <div class="card-title">THE WHISPERERS</div>
+        <div class="card-essence">
+          Quiet operators, data analysts, researchers, and stealth alpha leakers.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          They don't talk much, but the market listens when they do.
+        </div>
+      </div>
+
+      <!-- 9 SHRINES -->
+      <div class="card">
+        <div class="card-title">THE SHRINES</div>
+        <div class="card-essence">
+          Artists, plushie makers, and aesthetic designers.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          Every brushstroke a blessing.
+        </div>
+      </div>
+
+      <!-- 10 SYNTHWRIGHTS -->
+      <div class="card">
+        <div class="card-title">THE SYNTHWRIGHTS</div>
+        <div class="card-essence">
+          AI-powered creators, automation sorcerers, Ritual + Infernet tinkerers.
+        </div>
+        <div class="cat-wrapper">
+          <svg class="cat-silhouette">
+            <use href="#ritualCat" />
+          </svg>
+        </div>
+        <div class="card-tagline">
+          They merge circuits and sigils into sentient art.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
