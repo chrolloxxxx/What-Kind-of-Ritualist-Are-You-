@@ -7,14 +7,13 @@
   <style>
     :root {
       --bg-1: #020d06;
-      --bg-2: #041e12;
+      --bg-2: #041812;
       --bg-3: #0b3d24;
+      --card-green: #0a2b1a;
       --accent: #71ffb0;
-      --accent-soft: rgba(113, 255, 176, 0.26);
-      --accent-strong: #c7ffd9;
+      --accent-strong: #caffdf;
       --text-main: #e9fff5;
       --text-sub: #a7cfb8;
-      --border-subtle: rgba(165, 255, 205, 0.3);
     }
 
     * {
@@ -25,44 +24,41 @@
 
     body {
       min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Inter", sans-serif;
+      font-family: "Georgia", system-ui, -apple-system, serif;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
       color: var(--text-main);
       background:
-        radial-gradient(circle at top, #0d4a2c 0, transparent 55%),
-        radial-gradient(circle at bottom, #052015 0, transparent 60%),
+        radial-gradient(circle at top, #0e4a2c 0, transparent 60%),
+        radial-gradient(circle at bottom, #041a10 0, transparent 65%),
         linear-gradient(135deg, var(--bg-1), var(--bg-2) 40%, var(--bg-3));
     }
 
     .container {
       width: 100%;
       max-width: 720px;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
-      font-size: clamp(2.1rem, 4vw, 2.9rem);
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
       margin-bottom: 0.75rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent-strong);
       text-shadow:
-        0 0 20px rgba(113, 255, 176, 0.9),
-        0 0 40px rgba(0, 0, 0, 0.7);
+        0 0 18px rgba(113, 255, 176, 0.9),
+        0 0 36px rgba(0, 0, 0, 0.7);
     }
 
     .subtitle {
-      text-align: center;
       font-size: 0.98rem;
-      margin-bottom: 2.2rem;
+      margin-bottom: 2.1rem;
       color: var(--text-sub);
-      max-width: 460px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 480px;
+      margin-inline: auto;
       line-height: 1.6;
     }
 
@@ -72,16 +68,17 @@
         radial-gradient(circle at bottom right, rgba(46, 156, 103, 0.18), transparent 55%),
         rgba(3, 20, 12, 0.9);
       border-radius: 20px;
-      padding: 2.2rem 1.9rem 2.4rem;
-      border: 1px solid var(--border-subtle);
+      padding: 2.1rem 1.8rem 2.3rem;
+      border: 1px solid rgba(165, 255, 205, 0.35);
       box-shadow:
-        0 24px 55px rgba(0, 0, 0, 0.8),
-        0 0 40px rgba(113, 255, 176, 0.3);
+        0 22px 55px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(113, 255, 176, 0.32);
       backdrop-filter: blur(18px);
     }
 
     .input-group {
       margin-bottom: 1.4rem;
+      text-align: left;
     }
 
     label {
@@ -95,14 +92,14 @@
 
     input {
       width: 100%;
-      padding: 0.85rem 0.9rem;
+      padding: 0.8rem 0.9rem;
       background: rgba(3, 16, 10, 0.98);
       border-radius: 10px;
-      border: 1px solid rgba(165, 255, 205, 0.25);
+      border: 1px solid rgba(165, 255, 205, 0.3);
       color: var(--text-main);
-      font-size: 0.97rem;
+      font-size: 0.95rem;
       outline: none;
-      transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
     }
 
     input::placeholder {
@@ -123,16 +120,16 @@
     .primary-btn {
       width: 100%;
       margin-top: 0.4rem;
-      padding: 0.95rem 1.2rem;
+      padding: 0.9rem 1.1rem;
       border-radius: 999px;
       background: linear-gradient(135deg, #39ff9f, #12c46f);
       box-shadow:
         0 0 18px rgba(57, 255, 159, 0.8),
         0 10px 26px rgba(0, 0, 0, 0.7);
       color: #021208;
-      font-size: 1rem;
-      font-weight: 650;
-      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
@@ -148,154 +145,108 @@
 
     .result {
       display: none;
-      margin-top: 2.1rem;
+      margin-top: 2rem;
       animation: fadeIn 0.4s ease-out forwards;
     }
+    .result.show { display: block; }
 
-    .result.show {
-      display: block;
-    }
-
+    /* CARD STYLE like your example */
     .result-card {
+      max-width: 320px;
+      margin-inline: auto;
+      border-radius: 22px;
+      padding: 1.5rem 1.7rem 0.4rem;
+      background:
+        radial-gradient(circle at top, rgba(116, 255, 188, 0.24), transparent 60%),
+        linear-gradient(180deg, #052214 0%, #020e08 100%);
+      border: 1px solid rgba(153, 255, 206, 0.8);
+      box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.95),
+        0 0 40px rgba(113, 255, 176, 0.45);
+      text-align: center;
       position: relative;
       overflow: hidden;
-      border-radius: 18px;
-      padding: 1.9rem 1.5rem 1.9rem;
-      background:
-        radial-gradient(circle at top, rgba(113, 255, 176, 0.18), transparent 60%),
-        linear-gradient(145deg, #02160c, #052716 60%, #063521);
-      border: 1px solid rgba(124, 255, 193, 0.5);
-      box-shadow:
-        0 18px 42px rgba(0, 0, 0, 0.85),
-        0 0 32px rgba(124, 255, 193, 0.3);
-    }
-
-    .result-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 1.6rem;
-      align-items: center;
-    }
-
-    @media (max-width: 640px) {
-      .result-inner {
-        grid-template-columns: 1fr;
-      }
     }
 
     .archetype-title {
-      font-size: 1.7rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent-strong);
-    }
-
-    .archetype-description {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      opacity: 0.9;
-      line-height: 1.6;
-      margin-bottom: 0.7rem;
-    }
-
-    .tagline {
-      margin-top: 0.3rem;
-      font-size: 0.92rem;
-      font-style: italic;
-      color: var(--accent-strong);
-      line-height: 1.5;
-    }
-
-    .usernames {
-      margin-top: 0.8rem;
-      padding-top: 0.7rem;
-      border-top: 1px dashed rgba(167, 207, 184, 0.26);
-      font-size: 0.8rem;
-      color: var(--text-sub);
-    }
-
-    .username-item {
-      margin: 0.2rem 0;
-    }
-
-    .cat-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .cat-card {
-      position: relative;
-      border-radius: 16px;
-      padding: 0.7rem 0.5rem 0.5rem;
-      background:
-        radial-gradient(circle at top, rgba(140, 255, 203, 0.2), transparent 65%),
-        linear-gradient(160deg, rgba(2, 20, 11, 0.98), rgba(3, 30, 17, 0.98));
-      border: 1px solid rgba(140, 255, 203, 0.45);
-      box-shadow:
-        0 12px 28px rgba(0, 0, 0, 0.9),
-        0 0 26px rgba(113, 255, 176, 0.5);
-      width: 210px;
-    }
-
-    .cat-label {
-      text-align: center;
-      font-size: 0.75rem;
+      font-size: 1.4rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--accent-strong);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .archetype-description {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-tagline {
+      font-size: 0.86rem;
+      color: var(--accent-strong);
+      margin-top: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-usernames {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      margin-bottom: 1.2rem;
+    }
+
+    .card-usernames .username-item {
+      margin: 0.15rem 0;
+    }
+
+    .cat-wrapper {
+      position: relative;
+      margin-top: 0.4rem;
     }
 
     .cat-silhouette {
-      width: 170px;
-      height: 170px;
+      width: 100%;
+      max-width: 230px;
       display: block;
-      margin: 0 auto;
+      margin-inline: auto;
     }
 
     .action-buttons {
       display: flex;
-      gap: 0.85rem;
-      margin-top: 1.4rem;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
       flex-wrap: wrap;
     }
 
     .action-btn {
-      flex: 1 1 0;
-      min-width: 0;
-      padding: 0.7rem 0.6rem;
+      flex: 1;
+      padding: 0.65rem 0.6rem;
       border-radius: 999px;
       border: 1px solid rgba(140, 255, 203, 0.65);
       background:
         radial-gradient(circle at top, rgba(113, 255, 176, 0.22), transparent),
         rgba(3, 20, 12, 0.98);
       color: var(--accent-strong);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
+      gap: 0.35rem;
       cursor: pointer;
       transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
     }
 
     .action-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 0 18px rgba(113, 255, 176, 0.75);
+      box-shadow: 0 0 16px rgba(113, 255, 176, 0.7);
       background:
-        radial-gradient(circle at top, rgba(113, 255, 176, 0.28), transparent),
+        radial-gradient(circle at top, rgba(113, 255, 176, 0.3), transparent),
         rgba(4, 28, 16, 1);
-    }
-
-    .action-btn span:first-child {
-      font-size: 1rem;
     }
 
     @keyframes fadeIn {
@@ -304,6 +255,11 @@
     }
 
     canvas { display: none; }
+
+    @media (max-width: 600px) {
+      .form-box { padding: 1.8rem 1.3rem 2rem; }
+      .result-card { max-width: 280px; }
+    }
   </style>
 </head>
 <body>
@@ -330,63 +286,69 @@
 
       <div class="result" id="result">
         <div class="result-card" id="resultCard">
-          <div class="result-inner">
-            <div>
-              <div class="archetype-title" id="archetypeName"></div>
-              <div class="archetype-description" id="essence"></div>
-              <div class="tagline" id="tagline"></div>
-              <div class="usernames" id="usernames"></div>
-            </div>
+          <div class="archetype-title" id="archetypeName"></div>
+          <div class="archetype-description" id="essence"></div>
 
-            <div class="cat-container">
-              <div class="cat-card">
-                <div class="cat-label" id="catLabel">Ritualist cat sigil</div>
-                <!-- CAT STYLE similar to your reference image -->
-                <svg
-                  class="cat-silhouette"
-                  viewBox="0 0 200 200"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <radialGradient id="catGlow" cx="50%" cy="35%">
-                      <stop offset="0%" stop-color="#71ffb0" stop-opacity="0.9" />
-                      <stop offset="40%" stop-color="#71ffb0" stop-opacity="0.25" />
-                      <stop offset="100%" stop-color="#04140b" stop-opacity="0" />
-                    </radialGradient>
-                    <radialGradient id="eyeGlow">
-                      <stop offset="0%" stop-color="#eafff5" />
-                      <stop offset="50%" stop-color="#b9ffdd" />
-                      <stop offset="100%" stop-color="#45ec93" />
-                    </radialGradient>
-                  </defs>
+          <div class="cat-wrapper">
+            <!-- CAT very close to your reference -->
+            <svg
+              class="cat-silhouette"
+              viewBox="0 0 220 260"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <radialGradient id="bgGlow" cx="50%" cy="40%">
+                  <stop offset="0%" stop-color="#6cffb4" stop-opacity="0.9" />
+                  <stop offset="35%" stop-color="#6cffb4" stop-opacity="0.25" />
+                  <stop offset="100%" stop-color="#020b06" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="eyeGlow">
+                  <stop offset="0%" stop-color="#f4fff8" />
+                  <stop offset="50%" stop-color="#cbffe5" />
+                  <stop offset="100%" stop-color="#48f396" />
+                </radialGradient>
+                <!-- for fading body into background at bottom -->
+                <linearGradient id="fadeMask" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="white" stop-opacity="1" />
+                  <stop offset="65%" stop-color="white" stop-opacity="1" />
+                  <stop offset="100%" stop-color="white" stop-opacity="0" />
+                </linearGradient>
+                <mask id="bodyFade">
+                  <rect x="0" y="0" width="220" height="260" fill="url(#fadeMask)" />
+                </mask>
+              </defs>
 
-                  <!-- soft aura behind the cat -->
-                  <circle cx="100" cy="120" r="85" fill="url(#catGlow)" />
+              <!-- background glow -->
+              <ellipse cx="110" cy="150" rx="95" ry="105" fill="url(#bgGlow)" />
 
-                  <!-- head + ears (simple like your card) -->
-                  <path
-                    d="M45 120
-                       Q45 75 75 75
-                       L85 45
-                       Q100 30 115 45
-                       L125 75
-                       Q155 75 155 120
-                       Q155 165 100 165
-                       Q45 165 45 120Z"
-                    fill="#000000"
-                  />
+              <!-- head + ears (masked to fade bottom like your card) -->
+              <g mask="url(#bodyFade)">
+                <path
+                  d="M45 160
+                     Q45 110 78 108
+                     L88 72
+                     Q102 54 117 72
+                     L127 108
+                     Q160 110 160 160
+                     Q160 210 102 218
+                     Q45 210 45 160Z"
+                  fill="#000000"
+                />
+              </g>
 
-                  <!-- eyes -->
-                  <circle cx="78" cy="115" r="12" fill="url(#eyeGlow)" />
-                  <circle cx="122" cy="115" r="12" fill="url(#eyeGlow)" />
+              <!-- eyes -->
+              <circle cx="82" cy="142" r="12" fill="url(#eyeGlow)" />
+              <circle cx="132" cy="142" r="12" fill="url(#eyeGlow)" />
 
-                  <!-- pupils -->
-                  <ellipse cx="78" cy="115" rx="4" ry="7" fill="#021308" />
-                  <ellipse cx="122" cy="115" rx="4" ry="7" fill="#021308" />
-                </svg>
-              </div>
-            </div>
+              <!-- pupils -->
+              <ellipse cx="82" cy="142" rx="4" ry="7" fill="#021308" />
+              <ellipse cx="132" cy="142" rx="4" ry="7" fill="#021308" />
+            </svg>
           </div>
+
+          <div class="card-tagline" id="tagline"></div>
+
+          <div class="card-usernames" id="usernames"></div>
         </div>
 
         <div class="action-buttons">
@@ -516,55 +478,75 @@
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
 
-      canvas.width = 1152;
-      canvas.height = 768;
+      // vertical card like your example
+      canvas.width = 600;
+      canvas.height = 900;
 
-      // card-style green gradient like your reference
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, "#032114");
-      gradient.addColorStop(0.4, "#063821");
-      gradient.addColorStop(1, "#02130a");
+      // green gradient background
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, "#062b18");
+      gradient.addColorStop(0.4, "#04180f");
+      gradient.addColorStop(1, "#020804");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // border
-      ctx.strokeStyle = "rgba(165,255,205,0.9)";
-      ctx.lineWidth = 5;
-      ctx.strokeRect(50, 40, canvas.width - 100, canvas.height - 80);
+      // rounded card border
+      ctx.save();
+      const r = 26;
+      const x = 60;
+      const y = 40;
+      const w = canvas.width - 120;
+      const h = canvas.height - 80;
+      roundRect(ctx, x, y, w, h, r);
+      ctx.clip();
 
-      ctx.textAlign = "center";
+      // inner gradient
+      const g2 = ctx.createLinearGradient(0, y, 0, y + h);
+      g2.addColorStop(0, "#0b3620");
+      g2.addColorStop(0.5, "#04160c");
+      g2.addColorStop(1, "#020705");
+      ctx.fillStyle = g2;
+      ctx.fillRect(x, y, w, h);
 
       // title
-      ctx.fillStyle = "#caffe2";
-      ctx.font = "bold 50px 'SF Pro Text', system-ui";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#caffdf";
+      ctx.font = "bold 42px Georgia";
       ctx.fillText(currentArchetype.name, canvas.width / 2, 120);
 
       // essence
-      ctx.font = "22px 'SF Pro Text', system-ui";
-      ctx.fillStyle = "rgba(202,255,223,0.95)";
+      ctx.font = "20px Georgia";
+      ctx.fillStyle = "rgba(202,255,223,0.96)";
       wrapText(
         ctx,
         currentArchetype.essence,
         canvas.width / 2,
         170,
-        canvas.width - 220,
-        30
+        w - 60,
+        26
       );
 
-      // cat in the middle
-      drawCatSilhouette(ctx, canvas.width / 2, 415, 280);
+      // cat (center)
+      drawCatSilhouette(ctx, canvas.width / 2, 470, 260);
 
       // tagline
-      ctx.font = "italic 24px 'SF Pro Text', system-ui";
-      ctx.fillStyle = "#a3ffd2";
+      ctx.font = "20px Georgia";
+      ctx.fillStyle = "#caffdf";
       wrapText(
         ctx,
         currentArchetype.tagline,
         canvas.width / 2,
-        620,
-        canvas.width - 260,
-        32
+        690,
+        w - 80,
+        26
       );
+
+      ctx.restore();
+
+      ctx.strokeStyle = "rgba(153,255,206,0.9)";
+      ctx.lineWidth = 3;
+      roundRect(ctx, x, y, w, h, r);
+      ctx.stroke();
 
       const link = document.createElement("a");
       link.download = `ritualist-${currentArchetype.name
@@ -574,65 +556,70 @@
       link.click();
     }
 
-    // draw cat to match reference style
     function drawCatSilhouette(ctx, x, y, size) {
       const scale = size / 200;
       ctx.save();
       ctx.translate(x, y);
       ctx.scale(scale, scale);
-      ctx.translate(-100, -120);
+      ctx.translate(-110, -150);
 
-      // glow
-      const g = ctx.createRadialGradient(100, 120, 0, 100, 120, 90);
-      g.addColorStop(0, "rgba(113,255,176,0.9)");
-      g.addColorStop(0.45, "rgba(113,255,176,0.25)");
-      g.addColorStop(1, "rgba(3,16,9,0)");
+      // glow behind cat
+      const g = ctx.createRadialGradient(110, 150, 0, 110, 150, 90);
+      g.addColorStop(0, "rgba(108,255,180,0.9)");
+      g.addColorStop(0.4, "rgba(108,255,180,0.28)");
+      g.addColorStop(1, "rgba(2,8,5,0)");
       ctx.fillStyle = g;
       ctx.beginPath();
-      ctx.arc(100, 120, 90, 0, Math.PI * 2);
+      ctx.arc(110, 150, 90, 0, Math.PI * 2);
       ctx.fill();
 
       // head + ears
       ctx.fillStyle = "#000000";
       ctx.beginPath();
-      ctx.moveTo(45, 120);
-      ctx.quadraticCurveTo(45, 75, 75, 75);
-      ctx.lineTo(85, 45);
-      ctx.quadraticCurveTo(100, 30, 115, 45);
-      ctx.lineTo(125, 75);
-      ctx.quadraticCurveTo(155, 75, 155, 120);
-      ctx.quadraticCurveTo(155, 165, 100, 165);
-      ctx.quadraticCurveTo(45, 165, 45, 120);
+      ctx.moveTo(50, 165);
+      ctx.quadraticCurveTo(50, 120, 80, 118);
+      ctx.lineTo(90, 82);
+      ctx.quadraticCurveTo(104, 64, 118, 82);
+      ctx.lineTo(128, 118);
+      ctx.quadraticCurveTo(158, 120, 158, 165);
+      ctx.quadraticCurveTo(158, 210, 104, 215);
+      ctx.quadraticCurveTo(50, 210, 50, 165);
       ctx.closePath();
       ctx.fill();
 
-      // eyes
-      const eyeGradient = ctx.createRadialGradient(80, 115, 0, 80, 115, 12);
-      eyeGradient.addColorStop(0, "#f5fff9");
-      eyeGradient.addColorStop(0.5, "#c8ffe4");
-      eyeGradient.addColorStop(1, "#45ec93");
+      // fade bottom a bit
+      const fadeG = ctx.createLinearGradient(50, 165, 50, 220);
+      fadeG.addColorStop(0, "rgba(0,0,0,0)");
+      fadeG.addColorStop(1, "rgba(0,0,0,0.7)");
+      ctx.fillStyle = fadeG;
+      ctx.fillRect(50, 165, 110, 60);
 
+      // eyes
+      const eyeGradient = ctx.createRadialGradient(82, 155, 0, 82, 155, 12);
+      eyeGradient.addColorStop(0, "#f4fff8");
+      eyeGradient.addColorStop(0.5, "#cbffe5");
+      eyeGradient.addColorStop(1, "#48f396");
       ctx.fillStyle = eyeGradient;
       ctx.beginPath();
-      ctx.arc(80, 115, 12, 0, Math.PI * 2);
+      ctx.arc(82, 155, 12, 0, Math.PI * 2);
       ctx.fill();
 
-      const eyeGradient2 = ctx.createRadialGradient(120, 115, 0, 120, 115, 12);
-      eyeGradient2.addColorStop(0, "#f5fff9");
-      eyeGradient2.addColorStop(0.5, "#c8ffe4");
-      eyeGradient2.addColorStop(1, "#45ec93");
+      const eyeGradient2 = ctx.createRadialGradient(126, 155, 0, 126, 155, 12);
+      eyeGradient2.addColorStop(0, "#f4fff8");
+      eyeGradient2.addColorStop(0.5, "#cbffe5");
+      eyeGradient2.addColorStop(1, "#48f396");
       ctx.fillStyle = eyeGradient2;
       ctx.beginPath();
-      ctx.arc(120, 115, 12, 0, Math.PI * 2);
+      ctx.arc(126, 155, 12, 0, Math.PI * 2);
       ctx.fill();
 
       // pupils
       ctx.fillStyle = "#021308";
       ctx.beginPath();
-      ctx.ellipse(80, 115, 4, 7, 0, 0, Math.PI * 2);
+      ctx.ellipse(82, 155, 4, 7, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
-      ctx.ellipse(120, 115, 4, 7, 0, 0, Math.PI * 2);
+      ctx.ellipse(126, 155, 4, 7, 0, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
@@ -658,6 +645,20 @@
       lines.forEach((l, i) => {
         ctx.fillText(l.trim(), x, y + i * lineHeight);
       });
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
     }
 
     function shareToTwitter() {
