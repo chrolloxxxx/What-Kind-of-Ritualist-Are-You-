@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Kind of Ritualist Are You?</title>
+  <style>
+    :root {
+      --bg-1: #020d06;
+      --bg-2: #041e12;
+      --bg-3: #0b3d24;
+      --accent: #71ffb0;
+      --accent-soft: rgba(113, 255, 176, 0.26);
+      --accent-strong: #c7ffd9;
+      --text-main: #e9fff5;
+      --text-sub: #a7cfb8;
+      --border-subtle: rgba(165, 255, 205, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top, #0d4a2c 0, transparent 55%),
+        radial-gradient(circle at bottom, #052015 0, transparent 60%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 40%, var(--bg-3));
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(2.1rem, 4vw, 2.9rem);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      text-shadow:
+        0 0 20px rgba(113, 255, 176, 0.9),
+        0 0 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.98rem;
+      margin-bottom: 2.2rem;
+      color: var(--text-sub);
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .form-box {
+      background:
+        radial-gradient(circle at top left, rgba(143, 255, 195, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(46, 156, 103, 0.18), transparent 55%),
+        rgba(3, 20, 12, 0.9);
+      border-radius: 20px;
+      padding: 2.2rem 1.9rem 2.4rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow:
+        0 24px 55px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(113, 255, 176, 0.3);
+      backdrop-filter: blur(18px);
+    }
+
+    .input-group {
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-sub);
+    }
+
+    input {
+      width: 100%;
+      padding: 0.85rem 0.9rem;
+      background: rgba(3, 16, 10, 0.98);
+      border-radius: 10px;
+      border: 1px solid rgba(165, 255, 205, 0.25);
+      color: var(--text-main);
+      font-size: 0.97rem;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    }
+
+    input::placeholder {
+      color: rgba(167, 207, 184, 0.45);
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 18px rgba(113, 255, 176, 0.5);
+      transform: translateY(-1px);
+    }
+
+    button {
+      border: none;
+      outline: none;
+    }
+
+    .primary-btn {
+      width: 100%;
+      margin-top: 0.4rem;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #39ff9f, #12c46f);
+      box-shadow:
+        0 0 18px rgba(57, 255, 159, 0.8),
+        0 10px 26px rgba(0, 0, 0, 0.7);
+      color: #021208;
+      font-size: 1rem;
+      font-weight: 650;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-1.5px);
+      filter: brightness(1.05);
+      box-shadow:
+        0 0 26px rgba(57, 255, 159, 0.95),
+        0 14px 32px rgba(0, 0, 0, 0.75);
+    }
+
+    .result {
+      display: none;
+      margin-top: 2.1rem;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      padding: 1.9rem 1.5rem 1.9rem;
+      background:
+        radial-gradient(circle at top, rgba(113, 255, 176, 0.18), transparent 60%),
+        linear-gradient(145deg, #02160c, #052716 60%, #063521);
+      border: 1px solid rgba(124, 255, 193, 0.5);
+      box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.85),
+        0 0 32px rgba(124, 255, 193, 0.3);
+    }
+
+    .result-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 1.6rem;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .result-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .archetype-title {
+      font-size: 1.7rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-strong);
+    }
+
+    .archetype-description {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 0.7rem;
+    }
+
+    .tagline {
+      margin-top: 0.3rem;
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--accent-strong);
+      line-height: 1.5;
+    }
+
+    .usernames {
+      margin-top: 0.8rem;
+      padding-top: 0.7rem;
+      border-top: 1px dashed rgba(167, 207, 184, 0.26);
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .username-item {
+      margin: 0.2rem 0;
+    }
+
+    .cat-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cat-card {
+      position: relative;
+      border-radius: 16px;
+      padding: 0.7rem 0.5rem 0.5rem;
+      background:
+        radial-gradient(circle at top, rgba(140, 255, 203, 0.2), transparent 65%),
+        linear-gradient(160deg, rgba(2, 20, 11, 0.98), rgba(3, 30, 17, 0.98));
+      border: 1px solid rgba(140, 255, 203, 0.45);
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.9),
+        0 0 26px rgba(113, 255, 176, 0.5);
+      width: 210px;
+    }
+
+    .cat-label {
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-strong);
+      margin-bottom: 0.25rem;
+    }
+
+    .cat-silhouette {
+      width: 170px;
+      height: 170px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.85rem;
+      margin-top: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0.7rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(140, 255, 203, 0.65);
+      background:
+        radial-gradient(circle at top, rgba(113, 255, 176, 0.22), transparent),
+        rgba(3, 20, 12, 0.98);
+      color: var(--accent-strong);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(113, 255, 176, 0.75);
+      background:
+        radial-gradient(circle at top, rgba(113, 255, 176, 0.28), transparent),
+        rgba(4, 28, 16, 1);
+    }
+
+    .action-btn span:first-child {
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    canvas { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>What Kind of Ritualist Are You?</h1>
+    <p class="subtitle">
+      Plug in your X and Discord sigils and let the network divine your Ritualist archetype.
+    </p>
+
+    <div class="form-box">
+      <div class="input-group">
+        <label>X ( Twitter ) username</label>
+        <input type="text" id="xUsername" placeholder="@ritualist" />
+      </div>
+
+      <div class="input-group">
+        <label>Discord username</label>
+        <input type="text" id="discordUsername" placeholder="ritualist#0000" />
+      </div>
+
+      <button class="primary-btn" onclick="summonArchetype()">
+        Summon my archetype
+      </button>
+
+      <div class="result" id="result">
+        <div class="result-card" id="resultCard">
+          <div class="result-inner">
+            <div>
+              <div class="archetype-title" id="archetypeName"></div>
+              <div class="archetype-description" id="essence"></div>
+              <div class="tagline" id="tagline"></div>
+              <div class="usernames" id="usernames"></div>
+            </div>
+
+            <div class="cat-container">
+              <div class="cat-card">
+                <div class="cat-label" id="catLabel">Ritualist cat sigil</div>
+                <!-- CAT STYLE similar to your reference image -->
+                <svg
+                  class="cat-silhouette"
+                  viewBox="0 0 200 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <radialGradient id="catGlow" cx="50%" cy="35%">
+                      <stop offset="0%" stop-color="#71ffb0" stop-opacity="0.9" />
+                      <stop offset="40%" stop-color="#71ffb0" stop-opacity="0.25" />
+                      <stop offset="100%" stop-color="#04140b" stop-opacity="0" />
+                    </radialGradient>
+                    <radialGradient id="eyeGlow">
+                      <stop offset="0%" stop-color="#eafff5" />
+                      <stop offset="50%" stop-color="#b9ffdd" />
+                      <stop offset="100%" stop-color="#45ec93" />
+                    </radialGradient>
+                  </defs>
+
+                  <!-- soft aura behind the cat -->
+                  <circle cx="100" cy="120" r="85" fill="url(#catGlow)" />
+
+                  <!-- head + ears (simple like your card) -->
+                  <path
+                    d="M45 120
+                       Q45 75 75 75
+                       L85 45
+                       Q100 30 115 45
+                       L125 75
+                       Q155 75 155 120
+                       Q155 165 100 165
+                       Q45 165 45 120Z"
+                    fill="#000000"
+                  />
+
+                  <!-- eyes -->
+                  <circle cx="78" cy="115" r="12" fill="url(#eyeGlow)" />
+                  <circle cx="122" cy="115" r="12" fill="url(#eyeGlow)" />
+
+                  <!-- pupils -->
+                  <ellipse cx="78" cy="115" rx="4" ry="7" fill="#021308" />
+                  <ellipse cx="122" cy="115" rx="4" ry="7" fill="#021308" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="action-btn" onclick="downloadImage()">
+            <span>📥</span><span>Download</span>
+          </button>
+          <button class="action-btn" onclick="shareToTwitter()">
+            <span>🐦</span><span>Share to X</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const archetypes = [
+      {
+        name: "THE ORACLES",
+        essence: "Strategic thinkers, visionaries, narrative builders.",
+        tagline: "They see patterns before the blocks are even minted."
+      },
+      {
+        name: "THE SUMMONERS",
+        essence: "Community activators, hosts, event organizers, raiders.",
+        tagline: "They call the crowd, and the crowd always answers."
+      },
+      {
+        name: "THE ALCHEMISTS",
+        essence:
+          "Experimenters and degen builders mixing liquidity, bots, and code.",
+        tagline: "Turning smart contracts into spellcraft."
+      },
+      {
+        name: "THE ARCHITECTS",
+        essence: "Infrastructure devs and backend mages who build Ritual's spine.",
+        tagline: "They write the code that powers the coven."
+      },
+      {
+        name: "THE CHRONICLERS",
+        essence: "Storytellers, threadwriters, meme-smiths, content magi.",
+        tagline: "They document the rituals so others may follow."
+      },
+      {
+        name: "THE GUARDIANS",
+        essence: "Moderators, security analysts, whitehats, ops watchers.",
+        tagline: "The firewall between chaos and order."
+      },
+      {
+        name: "THE CHAOS MAGES",
+        essence: "Meme lords, shitposters, and energy catalysts.",
+        tagline: "Where entropy becomes engagement."
+      },
+      {
+        name: "THE WHISPERERS",
+        essence:
+          "Quiet operators, data analysts, researchers, and stealth alpha leakers.",
+        tagline: "They don't talk much, but the market listens when they do."
+      },
+      {
+        name: "THE SHRINES",
+        essence: "Artists, plushie makers, and aesthetic designers.",
+        tagline: "Every brushstroke a blessing."
+      },
+      {
+        name: "THE SYNTHWRIGHTS",
+        essence:
+          "AI-powered creators, automation sorcerers, Ritual + Infernet tinkerers.",
+        tagline: "They merge circuits and sigils into sentient art."
+      }
+    ];
+
+    let currentArchetype = null;
+    let currentX = "";
+    let currentDiscord = "";
+
+    function summonArchetype() {
+      const xUsername = document.getElementById("xUsername").value.trim();
+      const discordUsername = document
+        .getElementById("discordUsername")
+        .value.trim();
+
+      if (!xUsername && !discordUsername) {
+        alert("Please enter at least one username to divine your archetype.");
+        return;
+      }
+
+      currentX = xUsername;
+      currentDiscord = discordUsername;
+
+      const combined = xUsername + "|" + discordUsername;
+      let hash = 0;
+      for (let i = 0; i < combined.length; i++) {
+        hash = (hash << 5) - hash + combined.charCodeAt(i);
+        hash |= 0;
+      }
+
+      const index = Math.abs(hash) % archetypes.length;
+      currentArchetype = archetypes[index];
+
+      document.getElementById("archetypeName").textContent =
+        currentArchetype.name;
+      document.getElementById("essence").textContent =
+        currentArchetype.essence;
+      document.getElementById("tagline").textContent =
+        currentArchetype.tagline;
+
+      let usernamesHTML = "";
+      if (xUsername) {
+        usernamesHTML += `<div class="username-item">X: ${xUsername}</div>`;
+      }
+      if (discordUsername) {
+        usernamesHTML += `<div class="username-item">Discord: ${discordUsername}</div>`;
+      }
+      document.getElementById("usernames").innerHTML = usernamesHTML;
+
+      document.getElementById("result").classList.add("show");
+    }
+
+    function downloadImage() {
+      if (!currentArchetype) {
+        alert("Summon your archetype first.");
+        return;
+      }
+
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = 1152;
+      canvas.height = 768;
+
+      // card-style green gradient like your reference
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, "#032114");
+      gradient.addColorStop(0.4, "#063821");
+      gradient.addColorStop(1, "#02130a");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // border
+      ctx.strokeStyle = "rgba(165,255,205,0.9)";
+      ctx.lineWidth = 5;
+      ctx.strokeRect(50, 40, canvas.width - 100, canvas.height - 80);
+
+      ctx.textAlign = "center";
+
+      // title
+      ctx.fillStyle = "#caffe2";
+      ctx.font = "bold 50px 'SF Pro Text', system-ui";
+      ctx.fillText(currentArchetype.name, canvas.width / 2, 120);
+
+      // essence
+      ctx.font = "22px 'SF Pro Text', system-ui";
+      ctx.fillStyle = "rgba(202,255,223,0.95)";
+      wrapText(
+        ctx,
+        currentArchetype.essence,
+        canvas.width / 2,
+        170,
+        canvas.width - 220,
+        30
+      );
+
+      // cat in the middle
+      drawCatSilhouette(ctx, canvas.width / 2, 415, 280);
+
+      // tagline
+      ctx.font = "italic 24px 'SF Pro Text', system-ui";
+      ctx.fillStyle = "#a3ffd2";
+      wrapText(
+        ctx,
+        currentArchetype.tagline,
+        canvas.width / 2,
+        620,
+        canvas.width - 260,
+        32
+      );
+
+      const link = document.createElement("a");
+      link.download = `ritualist-${currentArchetype.name
+        .toLowerCase()
+        .replace(/\s+/g, "-")}.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    // draw cat to match reference style
+    function drawCatSilhouette(ctx, x, y, size) {
+      const scale = size / 200;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scale, scale);
+      ctx.translate(-100, -120);
+
+      // glow
+      const g = ctx.createRadialGradient(100, 120, 0, 100, 120, 90);
+      g.addColorStop(0, "rgba(113,255,176,0.9)");
+      g.addColorStop(0.45, "rgba(113,255,176,0.25)");
+      g.addColorStop(1, "rgba(3,16,9,0)");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(100, 120, 90, 0, Math.PI * 2);
+      ctx.fill();
+
+      // head + ears
+      ctx.fillStyle = "#000000";
+      ctx.beginPath();
+      ctx.moveTo(45, 120);
+      ctx.quadraticCurveTo(45, 75, 75, 75);
+      ctx.lineTo(85, 45);
+      ctx.quadraticCurveTo(100, 30, 115, 45);
+      ctx.lineTo(125, 75);
+      ctx.quadraticCurveTo(155, 75, 155, 120);
+      ctx.quadraticCurveTo(155, 165, 100, 165);
+      ctx.quadraticCurveTo(45, 165, 45, 120);
+      ctx.closePath();
+      ctx.fill();
+
+      // eyes
+      const eyeGradient = ctx.createRadialGradient(80, 115, 0, 80, 115, 12);
+      eyeGradient.addColorStop(0, "#f5fff9");
+      eyeGradient.addColorStop(0.5, "#c8ffe4");
+      eyeGradient.addColorStop(1, "#45ec93");
+
+      ctx.fillStyle = eyeGradient;
+      ctx.beginPath();
+      ctx.arc(80, 115, 12, 0, Math.PI * 2);
+      ctx.fill();
+
+      const eyeGradient2 = ctx.createRadialGradient(120, 115, 0, 120, 115, 12);
+      eyeGradient2.addColorStop(0, "#f5fff9");
+      eyeGradient2.addColorStop(0.5, "#c8ffe4");
+      eyeGradient2.addColorStop(1, "#45ec93");
+      ctx.fillStyle = eyeGradient2;
+      ctx.beginPath();
+      ctx.arc(120, 115, 12, 0, Math.PI * 2);
+      ctx.fill();
+
+      // pupils
+      ctx.fillStyle = "#021308";
+      ctx.beginPath();
+      ctx.ellipse(80, 115, 4, 7, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(120, 115, 4, 7, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(" ");
+      let line = "";
+      const lines = [];
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + " ";
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          lines.push(line);
+          line = words[n] + " ";
+        } else {
+          line = testLine;
+        }
+      }
+      lines.push(line);
+
+      lines.forEach((l, i) => {
+        ctx.fillText(l.trim(), x, y + i * lineHeight);
+      });
+    }
+
+    function shareToTwitter() {
+      if (!currentArchetype) {
+        alert("Summon your archetype first.");
+        return;
+      }
+      const text = `I'm ${currentArchetype.name}! ${currentArchetype.tagline}`;
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        text
+      )}`;
+      window.open(url, "_blank");
+    }
+
+    document
+      .getElementById("xUsername")
+      .addEventListener("keypress", function (e) {
+        if (e.key === "Enter") summonArchetype();
+      });
+
+    document
+      .getElementById("discordUsername")
+      .addEventListener("keypress", function (e) {
+        if (e.key === "Enter") summonArchetype();
+      });
+  </script>
+</body>
+</html>
