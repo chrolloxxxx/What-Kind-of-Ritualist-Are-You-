@@ -5,693 +5,378 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>What Kind of Ritualist Are You?</title>
   <style>
-    :root {
-      --bg-1: #020d06;
-      --bg-2: #041812;
-      --bg-3: #0b3d24;
-      --accent-strong: #caffdf;
-      --text-main: #e9fff5;
-      --text-sub: #a7cfb8;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #052616 0%, #010d06 100%);
+      color: #a6ffbf;
       min-height: 100vh;
-      font-family: "Georgia", system-ui, -apple-system, serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      color: var(--text-main);
-      background:
-        radial-gradient(circle at top, #0e4a2c 0, transparent 60%),
-        radial-gradient(circle at bottom, #041a10 0, transparent 65%),
-        linear-gradient(135deg, var(--bg-1), var(--bg-2) 40%, var(--bg-3));
+      padding: 20px;
     }
 
     .container {
+      max-width: 650px;
       width: 100%;
-      max-width: 720px;
       text-align: center;
     }
 
     h1 {
-      font-size: clamp(2.1rem, 4vw, 2.8rem);
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent-strong);
-      text-shadow:
-        0 0 18px rgba(113, 255, 176, 0.9),
-        0 0 36px rgba(0, 0, 0, 0.7);
+      font-size: 2.6rem;
+      margin-bottom: 0.8rem;
+      color: #b8ffd2;
+      text-shadow: 0 0 25px rgba(113, 255, 176, 0.6);
     }
 
     .subtitle {
-      font-size: 0.98rem;
-      margin-bottom: 2.1rem;
-      color: var(--text-sub);
-      max-width: 480px;
-      margin-inline: auto;
-      line-height: 1.6;
+      font-size: 1rem;
+      color: #98e8b2;
+      margin-bottom: 2rem;
+      opacity: 0.9;
     }
 
     .form-box {
-      background:
-        radial-gradient(circle at top left, rgba(143, 255, 195, 0.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(46, 156, 103, 0.18), transparent 55%),
-        rgba(3, 20, 12, 0.9);
+      background: rgba(3, 20, 11, 0.9);
       border-radius: 20px;
-      padding: 2.1rem 1.8rem 2.3rem;
-      border: 1px solid rgba(165, 255, 205, 0.35);
-      box-shadow:
-        0 22px 55px rgba(0, 0, 0, 0.9),
-        0 0 40px rgba(113, 255, 176, 0.32);
-      backdrop-filter: blur(18px);
+      border: 1px solid rgba(165, 255, 205, 0.3);
+      padding: 2.5rem;
+      box-shadow: 0 0 35px rgba(113, 255, 176, 0.3);
+      backdrop-filter: blur(12px);
     }
 
     .input-group {
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.5rem;
       text-align: left;
     }
 
     label {
       display: block;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.5rem;
       font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-sub);
+      letter-spacing: 0.1em;
+      color: #98e8b2;
     }
 
     input {
       width: 100%;
-      padding: 0.8rem 0.9rem;
-      background: rgba(3, 16, 10, 0.98);
+      padding: 0.9rem;
       border-radius: 10px;
-      border: 1px solid rgba(165, 255, 205, 0.3);
-      color: var(--text-main);
-      font-size: 0.95rem;
+      background: rgba(0, 20, 10, 0.9);
+      border: 1px solid rgba(113, 255, 176, 0.3);
+      color: #a6ffbf;
+      font-size: 1rem;
       outline: none;
-      transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
-    }
-
-    input::placeholder {
-      color: rgba(167, 207, 184, 0.45);
+      transition: all 0.2s ease;
     }
 
     input:focus {
-      border-color: #71ffb0;
-      box-shadow: 0 0 18px rgba(113, 255, 176, 0.5);
-      transform: translateY(-1px);
+      border-color: #a6ffbf;
+      box-shadow: 0 0 10px rgba(113, 255, 176, 0.4);
     }
 
-    button { border: none; outline: none; }
-
-    .primary-btn {
-      width: 100%;
-      margin-top: 0.4rem;
-      padding: 0.9rem 1.1rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #39ff9f, #12c46f);
-      box-shadow:
-        0 0 18px rgba(57, 255, 159, 0.8),
-        0 10px 26px rgba(0, 0, 0, 0.7);
-      color: #021208;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    input[type="file"] {
+      color: #a6ffbf;
+      border: 1px dashed rgba(113, 255, 176, 0.3);
+      background: rgba(3, 15, 8, 0.7);
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
     }
 
-    .primary-btn:hover {
-      transform: translateY(-1.5px);
-      filter: brightness(1.05);
-      box-shadow:
-        0 0 26px rgba(57, 255, 159, 0.95),
-        0 14px 32px rgba(0, 0, 0, 0.75);
+    button {
+      width: 100%;
+      margin-top: 0.5rem;
+      background: linear-gradient(135deg, #35ff9e, #17cc70);
+      color: #021308;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 999px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: linear-gradient(135deg, #244d35, #0a2a19);
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(113, 255, 176, 0.6);
     }
 
     .result {
       display: none;
       margin-top: 2rem;
-      animation: fadeIn 0.4s ease-out forwards;
+      animation: fadeIn 0.4s ease;
     }
-    .result.show { display: block; }
 
-    /* RESULT CARD: mimic your GUARDIANS card */
+    .result.show {
+      display: block;
+    }
+
     .result-card {
-      max-width: 320px;
-      margin-inline: auto;
-      border-radius: 22px;
-      padding: 1.4rem 1.5rem 0.8rem;
-      background:
-        radial-gradient(circle at top, rgba(116,255,188,0.25), transparent 60%),
-        linear-gradient(180deg, #062c19 0%, #020804 100%);
-      border: 1px solid rgba(153,255,206,0.9);
-      box-shadow:
-        0 20px 40px rgba(0,0,0,0.95),
-        0 0 38px rgba(113,255,176,0.45);
+      background: radial-gradient(circle at top, rgba(116, 255, 188, 0.25), transparent 70%), linear-gradient(180deg, #062c19 0%, #020804 100%);
+      border: 1px solid rgba(153, 255, 206, 0.9);
+      border-radius: 20px;
+      padding: 2rem 1.5rem 1rem;
+      box-shadow: 0 0 30px rgba(113, 255, 176, 0.4);
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      max-width: 350px;
+      margin: auto;
     }
 
     .archetype-title {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
+      color: #b8ffd2;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent-strong);
-      margin-bottom: 0.7rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
     }
 
     .archetype-description {
-      font-size: 0.86rem;
-      color: var(--text-main);
-      opacity: 0.9;
-      line-height: 1.6;
-      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #e6fff1;
+      line-height: 1.5;
+      margin-bottom: 1.2rem;
     }
 
-    .card-tagline {
-      font-size: 0.85rem;
-      color: var(--accent-strong);
-      margin-top: 1rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .card-usernames {
-      font-size: 0.75rem;
-      color: var(--text-sub);
-      margin-bottom: 1rem;
-    }
-    .card-usernames .username-item {
-      margin: 0.15rem 0;
-    }
-
-    .cat-wrapper {
-      margin-top: 0.3rem;
-    }
-
-    .cat-silhouette {
+    .cat-img {
       width: 100%;
-      max-width: 210px;
+      max-width: 240px;
       display: block;
-      margin-inline: auto;
+      margin: 1rem auto;
+      border-radius: 12px;
+      box-shadow: 0 0 45px rgba(113, 255, 176, 0.7),
+                  0 0 60px rgba(113, 255, 176, 0.5);
+      object-fit: contain;
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #b8ffd2;
+      margin-top: 1rem;
+    }
+
+    .usernames {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #98e8b2;
     }
 
     .action-buttons {
       display: flex;
-      gap: 0.75rem;
-      margin-top: 1.2rem;
-      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
 
     .action-btn {
       flex: 1;
-      padding: 0.65rem 0.6rem;
+      padding: 0.8rem;
       border-radius: 999px;
       border: 1px solid rgba(140, 255, 203, 0.65);
-      background:
-        radial-gradient(circle at top, rgba(113, 255, 176, 0.22), transparent),
-        rgba(3, 20, 12, 0.98);
-      color: var(--accent-strong);
-      font-size: 0.8rem;
+      background: rgba(4, 28, 16, 1);
+      color: #a6ffbf;
+      font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
       cursor: pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      transition: all 0.2s ease;
     }
 
     .action-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 0 16px rgba(113, 255, 176, 0.7);
-      background:
-        radial-gradient(circle at top, rgba(113, 255, 176, 0.3), transparent),
-        rgba(4, 28, 16, 1);
-    }
-
-    .gallery-link {
-      margin-top: 1.4rem;
-      font-size: 0.8rem;
-      color: var(--text-sub);
-    }
-    .gallery-link a {
-      color: var(--accent-strong);
-      text-decoration: underline;
+      box-shadow: 0 0 18px rgba(113, 255, 176, 0.6);
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    canvas { display: none; }
-
-    @media (max-width: 600px) {
-      .form-box { padding: 1.8rem 1.3rem 2rem; }
-      .result-card { max-width: 280px; }
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>What Kind of Ritualist Are You?</h1>
-    <p class="subtitle">
-      Plug in your X and Discord sigils and let the network divine your Ritualist archetype.
-    </p>
+    <p class="subtitle">Plug in your X and Discord sigils and let the network divine your Ritualist archetype.</p>
 
     <div class="form-box">
       <div class="input-group">
-        <label>X ( Twitter ) username</label>
-        <input type="text" id="xUsername" placeholder="@ritualist" />
+        <label>X (Twitter) Username</label>
+        <input type="text" id="xUsername" placeholder="@ritualist">
       </div>
 
       <div class="input-group">
-        <label>Discord username</label>
-        <input type="text" id="discordUsername" placeholder="ritualist#0000" />
+        <label>Discord Username</label>
+        <input type="text" id="discordUsername" placeholder="ritualist#0000">
       </div>
 
-      <button class="primary-btn" onclick="summonArchetype()">
-        Summon my archetype
-      </button>
+      <div class="input-group">
+        <label>Upload</label>
+        <input type="file" id="photoInput" accept="image/*" required>
+      </div>
+
+      <button id="summonBtn" onclick="summonArchetype()" disabled>Summon My Archetype</button>
 
       <div class="result" id="result">
         <div class="result-card">
           <div class="archetype-title" id="archetypeName"></div>
           <div class="archetype-description" id="essence"></div>
-
-          <div class="cat-wrapper">
-            <!-- SVG cat styled like THE GUARDIANS card -->
-            <svg
-              class="cat-silhouette"
-              viewBox="0 0 220 260"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <radialGradient id="bgGlow" cx="50%" cy="40%">
-                  <stop offset="0%" stop-color="#6cffb4" stop-opacity="0.9" />
-                  <stop offset="35%" stop-color="#6cffb4" stop-opacity="0.25" />
-                  <stop offset="100%" stop-color="#020b06" stop-opacity="0" />
-                </radialGradient>
-                <radialGradient id="eyeGlow">
-                  <stop offset="0%" stop-color="#f4fff8" />
-                  <stop offset="50%" stop-color="#cbffe5" />
-                  <stop offset="100%" stop-color="#48f396" />
-                </radialGradient>
-                <linearGradient id="fadeMask" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="white" stop-opacity="1" />
-                  <stop offset="65%" stop-color="white" stop-opacity="1" />
-                  <stop offset="100%" stop-color="white" stop-opacity="0" />
-                </linearGradient>
-                <mask id="bodyFade">
-                  <rect x="0" y="0" width="220" height="260" fill="url(#fadeMask)" />
-                </mask>
-              </defs>
-
-              <!-- glow behind cat -->
-              <ellipse cx="110" cy="150" rx="95" ry="105" fill="url(#bgGlow)" />
-
-              <!-- head + ears -->
-              <g mask="url(#bodyFade)">
-                <path
-                  d="M55 165
-                     Q55 118 90 115
-                     L100 82
-                     Q110 62 120 82
-                     L130 115
-                     Q165 118 165 165
-                     Q165 215 110 225
-                     Q55 215 55 165Z"
-                  fill="#000000"
-                />
-              </g>
-
-              <!-- eyes -->
-              <circle cx="88" cy="148" r="12" fill="url(#eyeGlow)" />
-              <circle cx="132" cy="148" r="12" fill="url(#eyeGlow)" />
-
-              <!-- pupils -->
-              <ellipse cx="88" cy="148" rx="4" ry="7" fill="#021308" />
-              <ellipse cx="132" cy="148" rx="4" ry="7" fill="#021308" />
-            </svg>
-          </div>
-
-          <div class="card-tagline" id="tagline"></div>
-
-          <div class="card-usernames" id="usernames"></div>
+          <img id="catImage" class="cat-img" style="display:none;" alt="Uploaded cat">
+          <div class="tagline" id="tagline"></div>
+          <div class="usernames" id="usernames"></div>
         </div>
 
         <div class="action-buttons">
-          <button class="action-btn" onclick="downloadImage()">
-            <span>📥</span><span>Download</span>
-          </button>
-          <button class="action-btn" onclick="shareToTwitter()">
-            <span>🐦</span><span>Share to X</span>
-          </button>
+          <button class="action-btn" onclick="downloadImage()">📥 Download</button>
+          <button class="action-btn" onclick="shareToTwitter()">🐦 Share to X</button>
         </div>
-
-        <p class="gallery-link">
-          Want to see every coven?
-          <a href="gallery.html">View all Ritualist archetypes →</a>
-        </p>
       </div>
     </div>
   </div>
 
-  <canvas id="canvas"></canvas>
+  <canvas id="canvas" style="display:none;"></canvas>
 
   <script>
     const archetypes = [
-      {
-        name: "THE ORACLES",
-        essence: "Strategic thinkers, visionaries, narrative builders.",
-        tagline: "They see patterns before the blocks are even minted."
-      },
-      {
-        name: "THE SUMMONERS",
-        essence: "Community activators, hosts, event organizers, raiders.",
-        tagline: "They call the crowd, and the crowd always answers."
-      },
-      {
-        name: "THE ALCHEMISTS",
-        essence:
-          "Experimenters and degen builders mixing liquidity, bots, and code.",
-        tagline: "Turning smart contracts into spellcraft."
-      },
-      {
-        name: "THE ARCHITECTS",
-        essence: "Infrastructure devs and backend mages who build Ritual's spine.",
-        tagline: "They write the code that powers the coven."
-      },
-      {
-        name: "THE CHRONICLERS",
-        essence: "Storytellers, threadwriters, meme-smiths, content magi.",
-        tagline: "They document the rituals so others may follow."
-      },
-      {
-        name: "THE GUARDIANS",
-        essence: "Moderators, security analysts, whitehats, ops watchers.",
-        tagline: "The firewall between chaos and order."
-      },
-      {
-        name: "THE CHAOS MAGES",
-        essence: "Meme lords, shitposters, and energy catalysts.",
-        tagline: "Where entropy becomes engagement."
-      },
-      {
-        name: "THE WHISPERERS",
-        essence:
-          "Quiet operators, data analysts, researchers, and stealth alpha leakers.",
-        tagline: "They don't talk much, but the market listens when they do."
-      },
-      {
-        name: "THE SHRINES",
-        essence: "Artists, plushie makers, and aesthetic designers.",
-        tagline: "Every brushstroke a blessing."
-      },
-      {
-        name: "THE SYNTHWRIGHTS",
-        essence:
-          "AI-powered creators, automation sorcerers, Ritual + Infernet tinkerers.",
-        tagline: "They merge circuits and sigils into sentient art."
-      }
+      { name: "THE ORACLES", essence: "Strategic thinkers, visionaries, narrative builders.", tagline: "They see patterns before the blocks are even minted." },
+      { name: "THE SUMMONERS", essence: "Community activators, hosts, event organizers, raiders.", tagline: "They call the crowd, and the crowd always answers." },
+      { name: "THE ALCHEMISTS", essence: "Experimenters and degen builders mixing liquidity, bots, and code.", tagline: "Turning smart contracts into spellcraft." },
+      { name: "THE ARCHITECTS", essence: "Infrastructure devs and backend mages who build Ritual's spine.", tagline: "They write the code that powers the coven." },
+      { name: "THE CHRONICLERS", essence: "Storytellers, threadwriters, meme-smiths, content magi.", tagline: "They document the rituals so others may follow." },
+      { name: "THE GUARDIANS", essence: "Moderators, security analysts, whitehats, ops watchers.", tagline: "The firewall between chaos and order." },
+      { name: "THE CHAOS MAGES", essence: "Meme lords, shitposters, and energy catalysts.", tagline: "Where entropy becomes engagement." },
+      { name: "THE WHISPERERS", essence: "Quiet operators, data analysts, researchers, and stealth alpha leakers.", tagline: "They don't talk much, but the market listens when they do." },
+      { name: "THE SHRINES", essence: "Artists, plushie makers, and aesthetic designers.", tagline: "Every brushstroke a blessing." },
+      { name: "THE SYNTHWRIGHTS", essence: "AI-powered creators, automation sorcerers, Ritual + Infernet tinkerers.", tagline: "They merge circuits and sigils into sentient art." }
     ];
 
     let currentArchetype = null;
-    let currentX = "";
-    let currentDiscord = "";
+    let uploadedPhoto = null;
+
+    const photoInput = document.getElementById("photoInput");
+    const catImage = document.getElementById("catImage");
+    const summonBtn = document.getElementById("summonBtn");
+
+    // Enable button only if photo is uploaded
+    photoInput.addEventListener("change", function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          uploadedPhoto = e.target.result;
+          catImage.src = uploadedPhoto;
+          catImage.style.display = "block";
+          summonBtn.disabled = false;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        summonBtn.disabled = true;
+      }
+    });
 
     function summonArchetype() {
-      const xUsername = document.getElementById("xUsername").value.trim();
-      const discordUsername = document
-        .getElementById("discordUsername")
-        .value.trim();
+      const xUsername = document.getElementById('xUsername').value.trim();
+      const discordUsername = document.getElementById('discordUsername').value.trim();
 
-      if (!xUsername && !discordUsername) {
-        alert("Please enter at least one username to divine your archetype.");
+      if (!uploadedPhoto) {
+        alert("Please upload an image before summoning!");
         return;
       }
 
-      currentX = xUsername;
-      currentDiscord = discordUsername;
-
-      const combined = xUsername + "|" + discordUsername;
+      const combined = xUsername + discordUsername;
       let hash = 0;
       for (let i = 0; i < combined.length; i++) {
-        hash = (hash << 5) - hash + combined.charCodeAt(i);
-        hash |= 0;
+        hash = ((hash << 5) - hash) + combined.charCodeAt(i);
+        hash &= hash;
       }
-
       const index = Math.abs(hash) % archetypes.length;
       currentArchetype = archetypes[index];
 
-      document.getElementById("archetypeName").textContent =
-        currentArchetype.name;
-      document.getElementById("essence").textContent =
-        currentArchetype.essence;
-      document.getElementById("tagline").textContent =
-        currentArchetype.tagline;
-
-      let usernamesHTML = "";
-      if (xUsername) {
-        usernamesHTML += `<div class="username-item">X: ${xUsername}</div>`;
-      }
-      if (discordUsername) {
-        usernamesHTML += `<div class="username-item">Discord: ${discordUsername}</div>`;
-      }
-      document.getElementById("usernames").innerHTML = usernamesHTML;
-
-      document.getElementById("result").classList.add("show");
+      document.getElementById('archetypeName').textContent = currentArchetype.name;
+      document.getElementById('essence').textContent = currentArchetype.essence;
+      document.getElementById('tagline').textContent = currentArchetype.tagline;
+      document.getElementById('usernames').innerHTML =
+        (xUsername ? `<div>X: ${xUsername}</div>` : '') +
+        (discordUsername ? `<div>Discord: ${discordUsername}</div>` : '');
+      document.getElementById('result').classList.add('show');
     }
 
     function downloadImage() {
-      if (!currentArchetype) {
-        alert("Summon your archetype first.");
-        return;
-      }
+      if (!currentArchetype) { alert("Summon your archetype first!"); return; }
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 600; canvas.height = 800;
 
-      const canvas = document.getElementById("canvas");
-      const ctx = canvas.getContext("2d");
-
-      canvas.width = 600;
-      canvas.height = 900;
-
-      // background gradient like the card
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, "#062c19");
-      gradient.addColorStop(0.45, "#04160c");
-      gradient.addColorStop(1, "#020604");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#062c19'); gradient.addColorStop(1, '#020804');
+      ctx.fillStyle = gradient; ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // rounded card shape
-      ctx.save();
-      const r = 26;
-      const x = 60;
-      const y = 40;
-      const w = canvas.width - 120;
-      const h = canvas.height - 80;
-      roundRect(ctx, x, y, w, h, r);
-      ctx.clip();
+      ctx.fillStyle = '#b8ffd2';
+      ctx.font = 'bold 36px Georgia';
+      ctx.textAlign = 'center';
+      ctx.fillText(currentArchetype.name, 300, 80);
+      ctx.font = '20px Georgia';
+      ctx.fillStyle = '#e6fff1';
+      wrapText(ctx, currentArchetype.essence, 300, 130, 500, 28);
 
-      // inner gradient
-      const g2 = ctx.createLinearGradient(0, y, 0, y + h);
-      g2.addColorStop(0, "#08341f");
-      g2.addColorStop(0.5, "#03130b");
-      g2.addColorStop(1, "#020604");
-      ctx.fillStyle = g2;
-      ctx.fillRect(x, y, w, h);
+      if (uploadedPhoto) {
+        const img = new Image();
+        img.src = uploadedPhoto;
+        img.onload = () => {
+          const size = 300;
+          ctx.save();
+          // glow effect behind image
+          const glow = ctx.createRadialGradient(300, 400, 40, 300, 400, 150);
+          glow.addColorStop(0, "rgba(113,255,176,0.5)");
+          glow.addColorStop(1, "rgba(0,0,0,0)");
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(300, 400, 150, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
 
-      // title
-      ctx.textAlign = "center";
-      ctx.fillStyle = "#caffdf";
-      ctx.font = "bold 42px Georgia";
-      ctx.fillText(currentArchetype.name, canvas.width / 2, 120);
+          ctx.drawImage(img, 150, 250, size, size);
+          finishCard(ctx);
+        };
+      } else finishCard(ctx);
 
-      // essence text
-      ctx.font = "20px Georgia";
-      ctx.fillStyle = "rgba(202,255,223,0.96)";
-      wrapText(
-        ctx,
-        currentArchetype.essence,
-        canvas.width / 2,
-        170,
-        w - 60,
-        26
-      );
-
-      // cat in centre
-      drawCatSilhouette(ctx, canvas.width / 2, 470, 260);
-
-      // tagline
-      ctx.font = "20px Georgia";
-      ctx.fillStyle = "#caffdf";
-      wrapText(
-        ctx,
-        currentArchetype.tagline,
-        canvas.width / 2,
-        690,
-        w - 80,
-        26
-      );
-
-      ctx.restore();
-
-      // outer border
-      ctx.strokeStyle = "rgba(153,255,206,0.9)";
-      ctx.lineWidth = 3;
-      roundRect(ctx, x, y, w, h, r);
-      ctx.stroke();
-
-      const link = document.createElement("a");
-      link.download = `ritualist-${currentArchetype.name
-        .toLowerCase()
-        .replace(/\s+/g, "-")}.png`;
-      link.href = canvas.toDataURL();
-      link.click();
-    }
-
-    // Cat match for card & PNG
-    function drawCatSilhouette(ctx, x, y, size) {
-      const scale = size / 220;
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.scale(scale, scale);
-      ctx.translate(-110, -150);
-
-      // glow
-      const g = ctx.createRadialGradient(110, 150, 0, 110, 150, 90);
-      g.addColorStop(0, "rgba(108,255,180,0.9)");
-      g.addColorStop(0.4, "rgba(108,255,180,0.28)");
-      g.addColorStop(1, "rgba(2,8,5,0)");
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(110, 150, 90, 0, Math.PI * 2);
-      ctx.fill();
-
-      // head + ears
-      ctx.fillStyle = "#000000";
-      ctx.beginPath();
-      ctx.moveTo(55, 165);
-      ctx.quadraticCurveTo(55, 118, 90, 115);
-      ctx.lineTo(100, 82);
-      ctx.quadraticCurveTo(110, 62, 120, 82);
-      ctx.lineTo(130, 115);
-      ctx.quadraticCurveTo(165, 118, 165, 165);
-      ctx.quadraticCurveTo(165, 215, 110, 225);
-      ctx.quadraticCurveTo(55, 215, 55, 165);
-      ctx.closePath();
-      ctx.fill();
-
-      // slight fade at bottom
-      const fadeG = ctx.createLinearGradient(55, 175, 55, 235);
-      fadeG.addColorStop(0, "rgba(0,0,0,0)");
-      fadeG.addColorStop(1, "rgba(0,0,0,0.7)");
-      ctx.fillStyle = fadeG;
-      ctx.fillRect(55, 175, 110, 60);
-
-      // eyes
-      const eyeGradient = ctx.createRadialGradient(88, 148, 0, 88, 148, 12);
-      eyeGradient.addColorStop(0, "#f4fff8");
-      eyeGradient.addColorStop(0.5, "#cbffe5");
-      eyeGradient.addColorStop(1, "#48f396");
-      ctx.fillStyle = eyeGradient;
-      ctx.beginPath();
-      ctx.arc(88, 148, 12, 0, Math.PI * 2);
-      ctx.fill();
-
-      const eyeGradient2 = ctx.createRadialGradient(132, 148, 0, 132, 148, 12);
-      eyeGradient2.addColorStop(0, "#f4fff8");
-      eyeGradient2.addColorStop(0.5, "#cbffe5");
-      eyeGradient2.addColorStop(1, "#48f396");
-      ctx.fillStyle = eyeGradient2;
-      ctx.beginPath();
-      ctx.arc(132, 148, 12, 0, Math.PI * 2);
-      ctx.fill();
-
-      // pupils
-      ctx.fillStyle = "#021308";
-      ctx.beginPath();
-      ctx.ellipse(88, 148, 4, 7, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.ellipse(132, 148, 4, 7, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.restore();
-    }
-
-    function roundRect(ctx, x, y, w, h, r) {
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.lineTo(x + w - r, y);
-      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-      ctx.lineTo(x + w, y + h - r);
-      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      ctx.lineTo(x + r, y + h);
-      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-      ctx.lineTo(x, y + r);
-      ctx.quadraticCurveTo(x, y, x + r, y);
-      ctx.closePath();
+      function finishCard(ctx) {
+        ctx.fillStyle = '#b8ffd2';
+        ctx.font = 'italic 22px Georgia';
+        wrapText(ctx, currentArchetype.tagline, 300, 600, 500, 28);
+        const link = document.createElement('a');
+        link.download = 'ritualist-card.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      }
     }
 
     function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = text.split(" ");
-      let line = "";
-      const lines = [];
-
+      const words = text.split(' ');
+      let line = '', lines = [];
       for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + " ";
+        const testLine = line + words[n] + ' ';
         const metrics = ctx.measureText(testLine);
         if (metrics.width > maxWidth && n > 0) {
           lines.push(line);
-          line = words[n] + " ";
-        } else {
-          line = testLine;
-        }
+          line = words[n] + ' ';
+        } else line = testLine;
       }
       lines.push(line);
-
-      lines.forEach((l, i) => {
-        ctx.fillText(l.trim(), x, y + i * lineHeight);
-      });
+      lines.forEach((l, i) => ctx.fillText(l.trim(), x, y + i * lineHeight));
     }
 
     function shareToTwitter() {
-      if (!currentArchetype) {
-        alert("Summon your archetype first.");
-        return;
-      }
+      if (!currentArchetype) { alert("Summon first!"); return; }
       const text = `I'm ${currentArchetype.name}! ${currentArchetype.tagline}`;
-      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        text
-      )}`;
-      window.open(url, "_blank");
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
     }
-
-    document
-      .getElementById("xUsername")
-      .addEventListener("keypress", function (e) {
-        if (e.key === "Enter") summonArchetype();
-      });
-
-    document
-      .getElementById("discordUsername")
-      .addEventListener("keypress", function (e) {
-        if (e.key === "Enter") summonArchetype();
-      });
   </script>
 </body>
 </html>
