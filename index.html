@@ -9,8 +9,6 @@
       --bg-1: #020d06;
       --bg-2: #041812;
       --bg-3: #0b3d24;
-      --card-green: #0a2b1a;
-      --accent: #71ffb0;
       --accent-strong: #caffdf;
       --text-main: #e9fff5;
       --text-sub: #a7cfb8;
@@ -107,15 +105,12 @@
     }
 
     input:focus {
-      border-color: var(--accent);
+      border-color: #71ffb0;
       box-shadow: 0 0 18px rgba(113, 255, 176, 0.5);
       transform: translateY(-1px);
     }
 
-    button {
-      border: none;
-      outline: none;
-    }
+    button { border: none; outline: none; }
 
     .primary-btn {
       width: 100%;
@@ -150,30 +145,30 @@
     }
     .result.show { display: block; }
 
-    /* CARD STYLE like your example */
+    /* RESULT CARD: mimic your GUARDIANS card */
     .result-card {
       max-width: 320px;
       margin-inline: auto;
       border-radius: 22px;
-      padding: 1.5rem 1.7rem 0.4rem;
+      padding: 1.4rem 1.5rem 0.8rem;
       background:
-        radial-gradient(circle at top, rgba(116, 255, 188, 0.24), transparent 60%),
-        linear-gradient(180deg, #052214 0%, #020e08 100%);
-      border: 1px solid rgba(153, 255, 206, 0.8);
+        radial-gradient(circle at top, rgba(116,255,188,0.25), transparent 60%),
+        linear-gradient(180deg, #062c19 0%, #020804 100%);
+      border: 1px solid rgba(153,255,206,0.9);
       box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.95),
-        0 0 40px rgba(113, 255, 176, 0.45);
+        0 20px 40px rgba(0,0,0,0.95),
+        0 0 38px rgba(113,255,176,0.45);
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
     .archetype-title {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--accent-strong);
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.7rem;
     }
 
     .archetype-description {
@@ -181,34 +176,32 @@
       color: var(--text-main);
       opacity: 0.9;
       line-height: 1.6;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     .card-tagline {
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       color: var(--accent-strong);
-      margin-top: 0.9rem;
-      margin-bottom: 1.2rem;
+      margin-top: 1rem;
+      margin-bottom: 0.9rem;
     }
 
     .card-usernames {
       font-size: 0.75rem;
       color: var(--text-sub);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
-
     .card-usernames .username-item {
       margin: 0.15rem 0;
     }
 
     .cat-wrapper {
-      position: relative;
-      margin-top: 0.4rem;
+      margin-top: 0.3rem;
     }
 
     .cat-silhouette {
       width: 100%;
-      max-width: 230px;
+      max-width: 210px;
       display: block;
       margin-inline: auto;
     }
@@ -249,6 +242,16 @@
         rgba(4, 28, 16, 1);
     }
 
+    .gallery-link {
+      margin-top: 1.4rem;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+    .gallery-link a {
+      color: var(--accent-strong);
+      text-decoration: underline;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -285,12 +288,12 @@
       </button>
 
       <div class="result" id="result">
-        <div class="result-card" id="resultCard">
+        <div class="result-card">
           <div class="archetype-title" id="archetypeName"></div>
           <div class="archetype-description" id="essence"></div>
 
           <div class="cat-wrapper">
-            <!-- CAT very close to your reference -->
+            <!-- SVG cat styled like THE GUARDIANS card -->
             <svg
               class="cat-silhouette"
               viewBox="0 0 220 260"
@@ -307,7 +310,6 @@
                   <stop offset="50%" stop-color="#cbffe5" />
                   <stop offset="100%" stop-color="#48f396" />
                 </radialGradient>
-                <!-- for fading body into background at bottom -->
                 <linearGradient id="fadeMask" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stop-color="white" stop-opacity="1" />
                   <stop offset="65%" stop-color="white" stop-opacity="1" />
@@ -318,31 +320,31 @@
                 </mask>
               </defs>
 
-              <!-- background glow -->
+              <!-- glow behind cat -->
               <ellipse cx="110" cy="150" rx="95" ry="105" fill="url(#bgGlow)" />
 
-              <!-- head + ears (masked to fade bottom like your card) -->
+              <!-- head + ears -->
               <g mask="url(#bodyFade)">
                 <path
-                  d="M45 160
-                     Q45 110 78 108
-                     L88 72
-                     Q102 54 117 72
-                     L127 108
-                     Q160 110 160 160
-                     Q160 210 102 218
-                     Q45 210 45 160Z"
+                  d="M55 165
+                     Q55 118 90 115
+                     L100 82
+                     Q110 62 120 82
+                     L130 115
+                     Q165 118 165 165
+                     Q165 215 110 225
+                     Q55 215 55 165Z"
                   fill="#000000"
                 />
               </g>
 
               <!-- eyes -->
-              <circle cx="82" cy="142" r="12" fill="url(#eyeGlow)" />
-              <circle cx="132" cy="142" r="12" fill="url(#eyeGlow)" />
+              <circle cx="88" cy="148" r="12" fill="url(#eyeGlow)" />
+              <circle cx="132" cy="148" r="12" fill="url(#eyeGlow)" />
 
               <!-- pupils -->
-              <ellipse cx="82" cy="142" rx="4" ry="7" fill="#021308" />
-              <ellipse cx="132" cy="142" rx="4" ry="7" fill="#021308" />
+              <ellipse cx="88" cy="148" rx="4" ry="7" fill="#021308" />
+              <ellipse cx="132" cy="148" rx="4" ry="7" fill="#021308" />
             </svg>
           </div>
 
@@ -359,6 +361,11 @@
             <span>🐦</span><span>Share to X</span>
           </button>
         </div>
+
+        <p class="gallery-link">
+          Want to see every coven?
+          <a href="gallery.html">View all Ritualist archetypes →</a>
+        </p>
       </div>
     </div>
   </div>
@@ -478,19 +485,18 @@
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
 
-      // vertical card like your example
       canvas.width = 600;
       canvas.height = 900;
 
-      // green gradient background
+      // background gradient like the card
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, "#062b18");
-      gradient.addColorStop(0.4, "#04180f");
-      gradient.addColorStop(1, "#020804");
+      gradient.addColorStop(0, "#062c19");
+      gradient.addColorStop(0.45, "#04160c");
+      gradient.addColorStop(1, "#020604");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // rounded card border
+      // rounded card shape
       ctx.save();
       const r = 26;
       const x = 60;
@@ -502,9 +508,9 @@
 
       // inner gradient
       const g2 = ctx.createLinearGradient(0, y, 0, y + h);
-      g2.addColorStop(0, "#0b3620");
-      g2.addColorStop(0.5, "#04160c");
-      g2.addColorStop(1, "#020705");
+      g2.addColorStop(0, "#08341f");
+      g2.addColorStop(0.5, "#03130b");
+      g2.addColorStop(1, "#020604");
       ctx.fillStyle = g2;
       ctx.fillRect(x, y, w, h);
 
@@ -514,7 +520,7 @@
       ctx.font = "bold 42px Georgia";
       ctx.fillText(currentArchetype.name, canvas.width / 2, 120);
 
-      // essence
+      // essence text
       ctx.font = "20px Georgia";
       ctx.fillStyle = "rgba(202,255,223,0.96)";
       wrapText(
@@ -526,7 +532,7 @@
         26
       );
 
-      // cat (center)
+      // cat in centre
       drawCatSilhouette(ctx, canvas.width / 2, 470, 260);
 
       // tagline
@@ -543,6 +549,7 @@
 
       ctx.restore();
 
+      // outer border
       ctx.strokeStyle = "rgba(153,255,206,0.9)";
       ctx.lineWidth = 3;
       roundRect(ctx, x, y, w, h, r);
@@ -556,14 +563,15 @@
       link.click();
     }
 
+    // Cat match for card & PNG
     function drawCatSilhouette(ctx, x, y, size) {
-      const scale = size / 200;
+      const scale = size / 220;
       ctx.save();
       ctx.translate(x, y);
       ctx.scale(scale, scale);
       ctx.translate(-110, -150);
 
-      // glow behind cat
+      // glow
       const g = ctx.createRadialGradient(110, 150, 0, 110, 150, 90);
       g.addColorStop(0, "rgba(108,255,180,0.9)");
       g.addColorStop(0.4, "rgba(108,255,180,0.28)");
@@ -576,53 +584,67 @@
       // head + ears
       ctx.fillStyle = "#000000";
       ctx.beginPath();
-      ctx.moveTo(50, 165);
-      ctx.quadraticCurveTo(50, 120, 80, 118);
-      ctx.lineTo(90, 82);
-      ctx.quadraticCurveTo(104, 64, 118, 82);
-      ctx.lineTo(128, 118);
-      ctx.quadraticCurveTo(158, 120, 158, 165);
-      ctx.quadraticCurveTo(158, 210, 104, 215);
-      ctx.quadraticCurveTo(50, 210, 50, 165);
+      ctx.moveTo(55, 165);
+      ctx.quadraticCurveTo(55, 118, 90, 115);
+      ctx.lineTo(100, 82);
+      ctx.quadraticCurveTo(110, 62, 120, 82);
+      ctx.lineTo(130, 115);
+      ctx.quadraticCurveTo(165, 118, 165, 165);
+      ctx.quadraticCurveTo(165, 215, 110, 225);
+      ctx.quadraticCurveTo(55, 215, 55, 165);
       ctx.closePath();
       ctx.fill();
 
-      // fade bottom a bit
-      const fadeG = ctx.createLinearGradient(50, 165, 50, 220);
+      // slight fade at bottom
+      const fadeG = ctx.createLinearGradient(55, 175, 55, 235);
       fadeG.addColorStop(0, "rgba(0,0,0,0)");
       fadeG.addColorStop(1, "rgba(0,0,0,0.7)");
       ctx.fillStyle = fadeG;
-      ctx.fillRect(50, 165, 110, 60);
+      ctx.fillRect(55, 175, 110, 60);
 
       // eyes
-      const eyeGradient = ctx.createRadialGradient(82, 155, 0, 82, 155, 12);
+      const eyeGradient = ctx.createRadialGradient(88, 148, 0, 88, 148, 12);
       eyeGradient.addColorStop(0, "#f4fff8");
       eyeGradient.addColorStop(0.5, "#cbffe5");
       eyeGradient.addColorStop(1, "#48f396");
       ctx.fillStyle = eyeGradient;
       ctx.beginPath();
-      ctx.arc(82, 155, 12, 0, Math.PI * 2);
+      ctx.arc(88, 148, 12, 0, Math.PI * 2);
       ctx.fill();
 
-      const eyeGradient2 = ctx.createRadialGradient(126, 155, 0, 126, 155, 12);
+      const eyeGradient2 = ctx.createRadialGradient(132, 148, 0, 132, 148, 12);
       eyeGradient2.addColorStop(0, "#f4fff8");
       eyeGradient2.addColorStop(0.5, "#cbffe5");
       eyeGradient2.addColorStop(1, "#48f396");
       ctx.fillStyle = eyeGradient2;
       ctx.beginPath();
-      ctx.arc(126, 155, 12, 0, Math.PI * 2);
+      ctx.arc(132, 148, 12, 0, Math.PI * 2);
       ctx.fill();
 
       // pupils
       ctx.fillStyle = "#021308";
       ctx.beginPath();
-      ctx.ellipse(82, 155, 4, 7, 0, 0, Math.PI * 2);
+      ctx.ellipse(88, 148, 4, 7, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
-      ctx.ellipse(126, 155, 4, 7, 0, 0, Math.PI * 2);
+      ctx.ellipse(132, 148, 4, 7, 0, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
     }
 
     function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
@@ -645,20 +667,6 @@
       lines.forEach((l, i) => {
         ctx.fillText(l.trim(), x, y + i * lineHeight);
       });
-    }
-
-    function roundRect(ctx, x, y, w, h, r) {
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.lineTo(x + w - r, y);
-      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-      ctx.lineTo(x + w, y + h - r);
-      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      ctx.lineTo(x + r, y + h);
-      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-      ctx.lineTo(x, y + r);
-      ctx.quadraticCurveTo(x, y, x + r, y);
-      ctx.closePath();
     }
 
     function shareToTwitter() {
